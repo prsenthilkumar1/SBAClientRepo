@@ -1,0 +1,67 @@
+
+  <div class="container">
+      <form novalidate #projectForm="ngForm" (ngSubmit)="OnClickAddProject(projectForm)">
+      <div class="form-group">
+        <input type="Hidden" id="projectID" name ="projectID" [(ngModel)]="project.Project_ID">
+          <label>Project Name</label>
+          <input type="text" class="form-control" id="projectName" name ="NameprojectName" placeholder="Project Name" [(ngModel)]="project.Project"
+          #NameprojectName="ngModel" required minlength="3" maxlength="3"/>
+
+          <ul class="text-danger list unstyled" *ngIf="NameprojectName.dirty && NameprojectName.invalid">
+            <li *ngFor="let errorName of getFieldvalidateion(NameprojectName)">
+              {{errorName}}
+            </li>
+          </ul>
+      </div>
+      <div  class="form-group">
+            <input type="checkbox" name ="StartEndDate">Set Start Date and End Date
+            <input class="datepicker" type="text" id="startdate" name ="startdate" placeholder="startdate" onfocus="(this.type='date')" [(ngModel)]="project.StartDate"/>
+            <input class="datepicker" type="text" id="enddate" name ="enddate" placeholder="enddate" onfocus="(this.type='date')" [(ngModel)]="project.EndDate"/>            
+      </div>
+      <div class="form-group">
+            <label>Priority</label>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="30" value="15" class="slider" id="myRange" name ="myRange" [(ngModel)]="project.Priority">
+            </div>
+        </div>
+        <div class="form-group">
+                <label>Manager</label>
+                <select (change)="selectChangeHandler($event)"  [(ngModel)]="selectedStatusId" name = "selectuserid">
+                   <option  [value]="urs.UserID" [id]="urs.UserID" *ngFor="let urs of users"> {{urs.FirstName}}</option>
+                </select>                
+            </div>
+            <div  class="form-group">
+                <!-- <input type="button" name ="AddName" value="Add" (click)="OnClickAddProject(project)" class="btn btn-primary"/> -->
+                <button type="submit" [disabled]="submitted && projectForm.invalid" value="Save"  class="btn btn-primary">Save</button>
+                <input type="button" name ="ResetName" value="Reset" (click)="OnClickResetProject()" class="btn btn-primary"/>
+            </div>
+    </form>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th scope="col">ProjectID</th>
+                <th scope="col">Project</th>
+                <th scope="col">No. of task</th>
+                <th scope="col">Completed</th>
+                <th scope="col">StartDate</th>
+                <th scope="col">EndDate</th>
+                <th scope="col">Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor = "let projdetails of projectdetail">
+                <td>{{projdetails.PDProjectID}}</td>
+                <td>{{projdetails.PDProjectName}}</td>
+                <td>{{projdetails.NoOfTask}}</td>
+                <td>{{projdetails.TaskCompleted}}</td>
+                <td>{{projdetails.PDStartDate}}</td>
+                <td>{{projdetails.PDEndDate}}</td>
+                <td>{{projdetails.PDPriority}}</td>
+                <div  class="form-group">
+                        <input type="button" value="Edit" (click)="OnClickEditProject(projdetails)" class="btn btn-primary"/>
+                        <input type="button" value="Suspend" (click)="OnClickSuspend(projdetails)" class="btn btn-primary"/>
+                    </div>
+            </tr>
+        </tbody>
+    </table>
+  </div>

@@ -1,0 +1,22 @@
+<p>Project Manager</p>
+
+<div class="tab">
+    <button class="tablinks" (click)="OnAddProject()">Add Project</button>
+    <button class="tablinks" (click)="OnAddTask()">Add Task</button>
+    <button class="tablinks" (click)="OnAddUser()">Add User</button>
+    <button class="tablinks" (click)="OnViewUser()">View User</button>
+    <!-- <button class="tablinks" onclick="openCity(event, 'Tokyo')">View User</button> -->
+  </div>
+
+  <div *ngIf=isAddProject>
+    <app-addproject></app-addproject>
+  </div>
+  <div *ngIf=isAddTask>
+    <app-addtask></app-addtask>
+  </div>
+  <div *ngIf=isAddUser>
+    <app-adduser></app-adduser>
+  </div>
+  <div *ngIf=isViewUser>
+    <app-adduser></app-adduser>
+  </div>

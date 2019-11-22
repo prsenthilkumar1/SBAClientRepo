@@ -1,0 +1,87 @@
+  <div class="container">
+      <form novalidate #taskForm="ngForm" (ngSubmit)="OnClickAddTask(taskForm)">
+        <div class="bg-danger text-white p-2 mb-2" *ngIf="submitted && taskForm.invalid">
+            There are problems with the form
+          </div>  
+        <div class="form-group">
+              <label>Project Name</label>
+              <select (change)="projectselectChangeHandler($event)" [(ngModel)]="task.ProjectID" name = "nameProjectID">
+                <option  [value]="projdetail.PDProjectID" [id]="projdetail.PDProjectID" *ngFor="let projdetail of projectdetail"> {{projdetail.PDProjectName}}</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <input type="hidden" id="TaskID" name ="TaskID" [(ngModel)]="task.TaskID">
+            <label>Task Name</label>
+            <input type="text" class="form-control" id="taskName" name ="NametaskName" placeholder="Task Name" [(ngModel)]="task.TaskName"
+            #NametaskName="ngModel" required minlength="3" maxlength="3"/>
+
+            <ul class="text-danger list unstyled" *ngIf="NametaskName.dirty && NametaskName.invalid">
+                <li *ngFor="let errorName of getFieldvalidateion(NametaskName)">
+                  {{errorName}}
+                </li>
+              </ul> 
+        </div>
+        <div  class="form-group">
+            <input type="checkbox">Parent Task            
+      </div>
+      <div class="form-group">
+          <label>Priority</label>
+          <div class="slidecontainer">
+              <input name="slidename" type="range" min="1" max="30" value="15" class="slider" id="myRange" [(ngModel)]="task.Priority">
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Parent Task</label>
+          <select (change)="selectChangeHandler($event)" [(ngModel)]="task.ParentID" name="ParentIDname">
+            <option  [value]="tskdet.TaskID" [id]="tskdet.TaskID" *ngFor="let tskdet of taskDetail"> {{tskdet.TaskName}}</option>
+          </select>
+      </div>
+      <div  class="form-group">
+          <label>Start Date</label>
+          <input class="datepicker" name="startdatename" type="text" id="startdate" placeholder="startdate" onfocus="(this.type='date')" [(ngModel)]="task.StartDate"/>
+          <label>End Date</label>
+          <input class="datepicker" name="enddatename" type="text" id="enddate" placeholder="enddate" onfocus="(this.type='date')" [(ngModel)]="task.EndDate"/>            
+    </div>
+    <div class="form-group">
+        <label>User</label>
+        <select (change)="userselectChangeHandler($event)" [(ngModel)]="task.UserID" name="UserIDname">
+            <option  [value]="urs.UserID" [id]="urs.UserID" *ngFor="let urs of users"> {{urs.FirstName}}</option>
+        </select>
+    </div>
+    <div  class="form-group">
+            <!-- <input type="button" name ="SaveTask" value="Save" (click)="OnClickAddTask(task)" class="btn btn-primary"/> -->
+            <button type="submit" [disabled]="submitted && taskForm.invalid" value="Save"  class="btn btn-primary">Save</button>
+            <input type="button" name ="ResetTask" value="Reset" (click)="OnClickResetTask()" class="btn btn-primary"/>
+        </div>
+      </form>
+
+      <table class="table table-stripped">
+          <thead>
+              <tr>
+                  <th scope="col">TaskID</th>
+                  <th scope="col">Task</th>
+                  <th scope="col">Parent</th>
+                  <th scope="col">Priority</th>
+                  <th scope="col">Start Date</th>
+                  <th scope="col">EndDate</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor = "let taskDeta of taskDetail">
+                  <td>{{taskDeta.TaskID}}</td>
+                  <td>{{taskDeta.TaskName}}</td>
+                  <td>{{taskDeta.ParentTaskName}}</td>
+                  <td>{{taskDeta.TaskPriority}}</td>
+                  <td>{{taskDeta.TaskStartDate}}</td>
+                  <td>{{taskDeta.TaskEndDate}}</td>
+                  <div  class="form-group">
+                          <input type="button" value="Edit" (click)="OnClickEditTask(taskDeta)" class="btn btn-primary"/>
+                          <input type="button" value="Suspend" (click)="OnClickTask(taskDeta)" class="btn btn-primary"/>
+                      </div>
+              </tr>
+          </tbody>
+      </table>
+
+      </div>
+
+  
