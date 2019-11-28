@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProjectManagerComponent } from './project-manager.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 
 describe('ProjectManagerComponent', () => {
   let component: ProjectManagerComponent;
@@ -8,7 +9,12 @@ describe('ProjectManagerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProjectManagerComponent ]
+      imports : [
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      declarations: [ ProjectManagerComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));

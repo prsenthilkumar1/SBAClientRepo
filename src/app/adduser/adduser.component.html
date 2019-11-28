@@ -1,13 +1,16 @@
-  <div class="container">
-    <form  novalidate #userForm="ngForm" (ngSubmit)="OnClickAddUser(userForm)">
+<h2>{{FormName}}</h2>
+<div class="container">
+    <!-- <div  [formGroup]="addUserForm" class="container"> -->
+    <form novalidate #userForm="ngForm" (ngSubmit)="OnClickAddUser(userForm)">
         <div class="bg-danger text-white p-2 mb-2" *ngIf="submitted && userForm.invalid">
             There are problems with the form
           </div>
         <div class="form-group">
-            <input type="hidden" id="UserID" name ="UserID" [(ngModel)]="usermodel.UserID">
+            <input type="hidden" id="UserID" name ="UserID" [(ngModel)]="usermodel.UserID" [ngModelOptions]="{standalone: true}">
           <label>First Name</label>
+          <!-- <input formControlName="FirstName"> -->
           <input type="text" class="form-control" id="firstName" name ="FirstName" placeholder="First Name" [(ngModel)]="usermodel.FirstName"
-          #FirstName="ngModel" required minlength="3" maxlength="3"/>
+          #FirstName="ngModel" required minlength="3" maxlength="3" [ngModelOptions]="{standalone: true}"/>
 
           <ul class="text-danger list unstyled" *ngIf="FirstName.dirty && FirstName.invalid">
             <li *ngFor="let errorName of getFieldvalidateion(FirstName)">
@@ -17,8 +20,9 @@
       </div>
       <div class="form-group">          
         <label>Last Name</label>
+        <!-- <input formControlName="LastName"> -->
         <input type="text" class="form-control" id="LastName" name ="LastName" placeholder="Last Name" [(ngModel)]="usermodel.LastName"
-        #LastName="ngModel" required minlength="3" maxlength="3"/>
+        #LastName="ngModel" required minlength="3" maxlength="3" [ngModelOptions]="{standalone: true}"/>
         <ul class="text-danger list unstyled" *ngIf="LastName.dirty && LastName.invalid">
             <li *ngFor="let errorName of getFieldvalidateion(LastName)">
               {{errorName}}
@@ -27,8 +31,9 @@
     </div>
     <div class="form-group">          
         <label>Employee ID</label>
+        <!-- <input formControlName="EmployeeID"> -->
         <input type="text" class="form-control" id="EmployeeID" name ="EmployeeID" placeholder="Employee ID" [(ngModel)]="usermodel.EmployeeID"
-        #EmployeeID="ngModel" required minlength="3" maxlength="3"/>
+        #EmployeeID="ngModel" required minlength="3" maxlength="3" [ngModelOptions]="{standalone: true}"/>
         <ul class="text-danger list unstyled" *ngIf="EmployeeID.dirty && EmployeeID.invalid">
             <li *ngFor="let errorName of getFieldvalidateion(EmployeeID)">
                 {{errorName}}

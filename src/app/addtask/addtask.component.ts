@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder,FormGroup, NgForm } from '@angular/forms';
 import { SBAService } from '../User.service';
 import { ProjectModel } from '../ProjectModel';
@@ -24,9 +23,8 @@ export class AddtaskComponent implements OnInit {
   public userid : number;
   public projectid : number;
   public submitted:boolean;
-
-  constructor(private router: Router
-    , private servicecall:SBAService) 
+  
+  constructor(private servicecall:SBAService) 
     {
       this.project = new ProjectModel;
       this.task = new TaskModel;

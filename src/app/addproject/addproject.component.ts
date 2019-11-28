@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+//import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder,FormGroup, NgForm  } from '@angular/forms';
 import { SBAService } from '../User.service';
 import { ProjectModel } from '../ProjectModel';
@@ -20,8 +20,8 @@ public userid : number;
 public submitted:boolean;
 //public projectForm:FormGroup;
 
-  constructor(private router: Router
-    , private servicecall:SBAService) 
+  //constructor(private router: Router , private servicecall:SBAService) 
+  constructor(private servicecall:SBAService) 
             { 
                this.project = new ProjectModel;
               // this.users = new UserModel;

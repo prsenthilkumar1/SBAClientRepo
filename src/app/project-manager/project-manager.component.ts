@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+//import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-project-manager',
@@ -13,7 +13,8 @@ export class ProjectManagerComponent implements OnInit {
   public isAddUser: boolean;
   public isViewUser: boolean;
 
-  constructor(private router: Router) { }
+  //constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }

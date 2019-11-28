@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule, FormBuilder,FormGroup, NgForm } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder,FormGroup, NgForm, FormControl } from '@angular/forms';
 import { SBAService } from '../User.service';
 import { UserModel } from '../UserModel';
 
@@ -11,14 +10,23 @@ import { UserModel } from '../UserModel';
 })
 export class AdduserComponent implements OnInit {
 
+ //public addUserForm: FormGroup;
+
+ FormName = "Add User";
+
   public users: any=[];
   public usermodel: UserModel;
   public isUpdateUser: boolean;
   public submitted:boolean;
-
-  constructor(private router: Router
-    , private servicecall:SBAService) 
-    { 
+  
+  constructor(private servicecall:SBAService) 
+    {       
+      // this.addUserForm = new FormGroup({
+      //   FirstName: new FormControl()
+      //   //LastName: new FormControl(),
+      //   //EmployeeID: new FormControl()
+      // });
+      
       this.usermodel=new UserModel; 
       this.isUpdateUser = false;
 

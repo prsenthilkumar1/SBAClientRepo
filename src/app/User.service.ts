@@ -12,16 +12,14 @@ import { TaskModel } from './TaskModel';
 
 export class SBAService{
 
-  private httpHeaders: HttpHeaders;
-  //private serviceUrl : string ="http://dummy.restapiexample.com/api/v1/employees";
+  private httpHeaders: HttpHeaders;  
 
   private UserAPIserviceUrl : string ="http://localhost:50407/api/UserAPI"; 
   private ProjectAPIserviceUrl : string ="http://localhost:50407/api/ProjectAPI"; 
   private TaskAPIserviceUrl : string ="http://localhost:50407/api/TaskAPI"; 
 
   constructor(private httpClient:HttpClient){
-    this.httpHeaders = new HttpHeaders({'content-Type' : 'application/json; charset=utf-8'});
-    //this.httpHeaders = this.httpHeaders.append('userId','629828');
+    this.httpHeaders = new HttpHeaders({'content-Type' : 'application/json; charset=utf-8'});    
   }
 
   public getUserList(){
